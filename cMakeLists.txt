@@ -8,3 +8,7 @@ src/game/main.cpp
 add_library(myengine
 src/myengine/entity.cpp
 )
+
+add_library(glm
+contrib/glm/
+)
