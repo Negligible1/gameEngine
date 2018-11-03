@@ -11,6 +11,10 @@ add_library(MYENGINE
             src/myengine/Component.h
             src/myengine/Core.cpp
             src/myengine/Core.h
+	src/myengine/Keyboard.h
+	src/myengine/Keyboard.cpp
+	src/myengine/Enviroment.h
+	src/myengine/Enviroment.cpp
 )
 add_executable(game
   src/game/main.cpp
