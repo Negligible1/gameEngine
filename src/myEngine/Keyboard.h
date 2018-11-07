@@ -1,3 +1,6 @@
+namespace myengine
+{
+	
 class Keyboard
 {
 public:
@@ -11,3 +14,4 @@ public:
 private:
 
 };
+}

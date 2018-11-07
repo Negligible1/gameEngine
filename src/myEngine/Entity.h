@@ -1,3 +1,6 @@
+namespace myengine
+{
+
 class Entity
 {
 public:
@@ -9,3 +12,4 @@ public:
 private:
 	//std::Vector<sharedComponents> ComponentList;
 };
+}

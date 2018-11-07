@@ -1,16 +1,20 @@
 #include <MYENGINE/Enviroment.h>
 
-Enviroment::Enviroment()
+namespace myengine
 {
 
-}
+	Enviroment::Enviroment()
+	{
 
-Enviroment::~Enviroment()
-{
+	}
 
-}
+	Enviroment::~Enviroment()
+	{
 
-float Enviroment::getDeltaTimeS()
-{
-	return deltaTimeS;
+	}
+
+	float Enviroment::getDeltaTimeS()
+	{
+		return deltaTimeS;
+	}
 }

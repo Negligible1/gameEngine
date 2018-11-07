@@ -1,14 +1,20 @@
 #include <MYENGINE/Entity.h>
 
-Entity::Entity()
+namespace myengine
 {
 
-}
-Entity::~Entity()
-{
+	Entity::Entity()
+	{
 
-}
-void Entity::addComponent()
-{
-	
+	}
+
+	Entity::~Entity()
+	{
+
+	}
+
+	void Entity::addComponent()
+	{
+
+	}
 }

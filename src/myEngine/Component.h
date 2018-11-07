@@ -1,3 +1,6 @@
+namespace myengine
+{
+	
 class Component
 {
 public:
@@ -6,3 +9,4 @@ public:
 
 private:
 };
+}

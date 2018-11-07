@@ -1,10 +1,16 @@
 #include <MYENGINE/Component.h>
 
-Component::Component()
+namespace myengine
 {
 
-}
-Component::~Component()
-{
+	Component::Component()
+	{
+
+	}
+
+	Component::~Component()
+	{
+
+	}
 
 }

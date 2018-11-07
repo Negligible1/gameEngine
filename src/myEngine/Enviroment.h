@@ -1,3 +1,6 @@
+namespace myengine
+{
+
 class Enviroment
 {
 public:
@@ -9,3 +12,4 @@ public:
 private:
 	float deltaTimeS;
 };
+}

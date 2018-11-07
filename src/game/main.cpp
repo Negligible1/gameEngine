@@ -1,12 +1,16 @@
-#include <MYENGINE/Entity.h>
-#include <MYENGINE/Component.h>
+#include <myEngine/myengine.h>
 #include <iostream>
+#include <memory>
 
 int main()
 {
-	Entity *ent = new Entity();
+
 	
-	ent->addComponent();
+	std::shared_ptr<myengine::Core> c = myengine::Core::initialise();
+
+
+
+	c->run();
 
 	return 0;
 }

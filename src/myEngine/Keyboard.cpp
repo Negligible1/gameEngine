@@ -1,29 +1,33 @@
-#include <src/myEngine/Keyboard.h>
+#include <MYENGINE/Keyboard.h>
 
-Keyboard::Keyboard()
+namespace myengine
 {
 
-}
+	Keyboard::Keyboard()
+	{
 
-Keyboard::~Keyboard()
-{
+	}
 
-}
+	Keyboard::~Keyboard()
+	{
 
-bool Keyboard::getKey(int i)
-{
+	}
 
-	return true;
-}
+	bool Keyboard::getKey(int i)
+	{
 
-bool Keyboard::getKeyDown(int i)
-{
+		return true;
+	}
 
-	return true;
-}
+	bool Keyboard::getKeyDown(int i)
+	{
 
-bool Keyboard::getKeyUp(int i)
-{
+		return true;
+	}
 
-	return true;
+	bool Keyboard::getKeyUp(int i)
+	{
+
+		return true;
+	}
 }
