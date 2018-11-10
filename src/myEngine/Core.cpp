@@ -12,9 +12,9 @@ namespace myengine
 	std::shared_ptr<Core> Core::initialise()
 	{
 		//creates useable pointer to self, sets a bool to false, sets weakptr to self
-		std::shared_ptr<Core> toSelf = std::make_shared<Core>();
-		toSelf->running = false;
-		toSelf->self = toSelf;
+		std::shared_ptr<Core> toCore = std::make_shared<Core>();
+		toCore->running = false;
+		toCore->self = toCore;
 
 		//initialise sdl, throws exception if issue
 		if (SDL_Init(SDL_INIT_VIDEO) < 0)
@@ -23,13 +23,13 @@ namespace myengine
 		}
 
 		//create SDL window ( "| SDL_WINDOW_OPENGL" makes it suitable for an OpenGL rendering context)
-		toSelf->window = SDL_CreateWindow("Game Engine",
+		toCore->window = SDL_CreateWindow("Game Engine",
 			SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED,
 			WINDOW_WIDTH, WINDOW_HEIGHT,
 			SDL_WINDOW_RESIZABLE | SDL_WINDOW_OPENGL);
 
 		//creates an OPENGL rendering context within the sdl window we made earlier
-		if (!SDL_GL_CreateContext(toSelf->window))
+		if (!SDL_GL_CreateContext(toCore->window))
 		{
 			throw std::exception();
 		}
@@ -40,7 +40,7 @@ namespace myengine
 			throw std::exception();
 		}
 
-		return toSelf;
+		return toCore;
 	}
 
 	Core::~Core()
@@ -67,12 +67,11 @@ namespace myengine
 			}
 
 			//iterate through and call update on all entities
+			CoreUpdate();
 
 
-
-
-
-
+			//Draw triangle shit
+			/*	
 			//
 			//
 			//a bunch of points to draw triangle
@@ -190,19 +189,20 @@ namespace myengine
 			glDeleteShader(fragmentShaderId);
 			//
 			//
-			
+			*/
 
 
 
 			//clear screen
-			glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
+			glClearColor(0.5f, 0.5f, 0.5f, 1.0f);
 			glClear(GL_COLOR_BUFFER_BIT);
 
 			//call draw on all entities
+			CoreDraw();
 
 
-
-
+			//Draw triangle shit
+			/*
 			//
 			// Instruct OpenGL to use our shader program and our VAO
 			glUseProgram(programId);
@@ -214,8 +214,7 @@ namespace myengine
 			glUseProgram(0);
 			//
 			//
-
-
+			*/
 
 
 
@@ -225,5 +224,35 @@ namespace myengine
 
 	}
 
+	void Core::pause()
+	{
+		running = false;
+	}
+
+	std::shared_ptr<Entity> Core::addEntity()
+	{
+		std::shared_ptr<Entity> toEntity = std::make_shared<Entity>();
+		entities.push_back(toEntity);
+		toEntity->self = toEntity;
+		toEntity->core = self;
+
+		return toEntity;
+	}
+
+	void Core::CoreDraw()
+	{
+		for (std::vector<std::shared_ptr<Entity> >::iterator it = entities.begin();	it != entities.end(); it++)
+		{
+			(*it)->EntityDraw();
+		}
+	}
+
+	void Core::CoreUpdate()
+	{
+		for (std::vector<std::shared_ptr<Entity> >::iterator it = entities.begin();	it != entities.end(); it++)
+		{
+			(*it)->EntityUpdate();
+		}
+	}
 
 }
