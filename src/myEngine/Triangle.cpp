@@ -6,7 +6,7 @@ namespace myengine
 	void Triangle::SetPositions()
 	{
 		//Set position vecs to draw triangle
-		positions.push_back(1.0f);
+		positions.push_back(0.0f);
 		positions.push_back(0.5f);
 		positions.push_back(0.0f);
 
@@ -16,9 +16,7 @@ namespace myengine
 
 		positions.push_back(0.5f);
 		positions.push_back(-0.5f);
-		positions.push_back(0.0f);
-
-		
+		positions.push_back(0.0f);		
 	}
 
 	void Triangle::VAOShit()

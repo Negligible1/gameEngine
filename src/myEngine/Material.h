@@ -15,17 +15,15 @@
 
 namespace myengine
 {
-
-	// Encapsulates shaders and textures
 	class Material
 	{
 	public:
-		Material(std::string _path);
+		Material();
 		~Material();
 
 		// Loads shaders from file
 		// Returns false if there was an error - it will also print out messages to console
-		bool LoadShaders();
+		bool LoadShaders(std::string vertFilename, std::string fragFilename);
 
 		// For setting the standard matrices needed by the shader
 		void SetMatrices(glm::mat4 &modelMatrix, glm::mat4 &invModelMatrix, glm::mat4 &viewMatrix, glm::mat4 &projMatrix);
@@ -42,7 +40,7 @@ namespace myengine
 		// Sets texture
 		// This applies to ambient, diffuse and specular colours
 		// If you want textures for anything else, you'll need to do that yourself ;)
-		bool SetTexture(std::string filename) { _texture1 = LoadTexture(filename); return _texture1 > 0; }
+		bool SetTexture(std::string filename) { _texture1 = LoadTexture(filename); return _texture1>0; }
 
 		// Sets the material, applying the shaders
 		void Apply();

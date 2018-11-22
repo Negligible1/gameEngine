@@ -9,7 +9,7 @@
 
 namespace myengine
 {
-	Mesh::Mesh(std::string path)
+	Mesh::Mesh()
 	{
 		// Initialise stuff here
 
@@ -18,8 +18,6 @@ namespace myengine
 		glGenVertexArrays(1, &_VAO);
 
 		_numVertices = 0;
-
-		LoadOBJ(path);
 	}
 
 	Mesh::~Mesh()

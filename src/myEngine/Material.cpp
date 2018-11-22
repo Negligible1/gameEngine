@@ -11,7 +11,7 @@
 
 namespace myengine
 {
-	Material::Material(std::string _path)
+	Material::Material()
 	{
 		// Initialise everything here
 		_shaderModelMatLocation = 0;
@@ -27,26 +27,22 @@ namespace myengine
 
 		_texture1 = 0;
 
-		_lightPosition = glm::vec3(10,10, 0);
 		_emissiveColour = glm::vec3(0.0f, 0.0f, 0.0f);
 		_diffuseColour = glm::vec3(0.0f, 0.0f, 0.0f);
 		_specularColour = glm::vec3(0.0f, 0.0f, 0.0f);
-
-		LoadShaders();
-		LoadTexture(_path);
+		_lightPosition = glm::vec3(0.0f, 0.0f, 0.0f);
 	}
 
 	Material::~Material()
 	{
-
+		// Clean up everything here
 	}
 
-	bool Material::LoadShaders()
+
+	bool Material::LoadShaders(std::string vertFilename, std::string fragFilename)
 	{
 		// OpenGL doesn't provide any functions for loading shaders from file
 
-		std::string vertFilename = "../Assets/Shaders/VertShader.txt";
-		std::string fragFilename = "../Assets/Shaders/FragShader.txt";
 
 		std::ifstream vertFile(vertFilename);
 		char *vShaderText = NULL;
@@ -217,6 +213,7 @@ namespace myengine
 		return true;
 	}
 
+
 	unsigned int Material::LoadTexture(std::string filename)
 	{
 		// Load SDL surface
@@ -267,6 +264,7 @@ namespace myengine
 		glUniformMatrix4fv(_shaderViewMatLocation, 1, GL_FALSE, glm::value_ptr(viewMatrix));
 		glUniformMatrix4fv(_shaderProjMatLocation, 1, GL_FALSE, glm::value_ptr(projMatrix));
 	}
+
 
 	void Material::Apply()
 	{

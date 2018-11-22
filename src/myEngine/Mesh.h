@@ -18,7 +18,7 @@ namespace myengine
 	class Mesh
 	{
 	public:
-		Mesh(std::string path);
+		Mesh();
 		~Mesh();
 
 		// OBJ file must be triangulated

@@ -13,11 +13,19 @@ namespace myengine
 {
 	void MeshRenderer::Initialise(std::string _meshPath, std::string _texturePath)
 	{
-		_mesh = std::make_shared<Mesh>(_meshPath);
-		_texture = std::make_shared<Material>(_texturePath);
+		_texture = std::make_shared<Material>();
+
+		_texture->LoadShaders("../Assets/Shaders/VertShader.txt", "../Assets/Shaders/FragShader.txt");
+		_texture->SetDiffuseColour(glm::vec3(0.5, 0.5, 0.5));
+		_texture->SetTexture("../Assets/Textures/Blue.bmp");
+		_texture->SetLightPosition(glm::vec3(10, 10, 0));
+
+
+		_mesh = std::make_shared<Mesh>();
+		_mesh->LoadOBJ("../Assets/Models/Box.obj");
+
 
 		_position = glm::vec3(0.0f, 0.0f, 0.0f);
-		_rotation = glm::vec3(0.0f, 0.0f, 0.0f);
 		_scale = glm::vec3(1.0f, 1.0f, 1.0f);
 	}
 
@@ -28,8 +36,6 @@ namespace myengine
 
 	void MeshRenderer::Update()
 	{
-		//_rotation += glm::vec3(0.0f, 0.1f, 0.0f);
-
 		_modelMatrix = glm::rotate(_modelMatrix, _rotation.y, glm::vec3(0, 1, 0));
 		_invModelMatrix = glm::rotate(glm::mat4(1.0f), -_rotation.y, glm::vec3(0, 1, 0));
 		_modelMatrix = glm::translate(glm::mat4(1.0f), _position);
@@ -38,7 +44,6 @@ namespace myengine
 
 	void MeshRenderer::Draw()
 	{
-		//getcore cmaera instead?
 		glm::mat4 pMat = getCore()->getCamera()->getProjMtrx();
 		glm::mat4 vMat = getCore()->getCamera()->getViewMatrx();
 
