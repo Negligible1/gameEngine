@@ -38,6 +38,11 @@ add_library(myengine
   src/myengine/Entity.cpp
   src/myengine/Keyboard.cpp
   src/myengine/Enviroment.cpp
+  src/myengine/Triangle.cpp
+  src/myengine/Mesh.cpp
+  src/myengine/Material.cpp
+  src/myengine/MeshRenderer.cpp
+  src/myengine/Camera.cpp
 )
 
 if(MSVC)

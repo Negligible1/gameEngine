@@ -4,5 +4,9 @@
 #include "Core.h"
 #include "Entity.h"
 #include "Component.h"
+#include "Triangle.h"
+#include "MeshRenderer.h"
+#include "Keyboard.h"
+#include "Camera.h"
 
 #endif

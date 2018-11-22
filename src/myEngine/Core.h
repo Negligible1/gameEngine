@@ -7,6 +7,7 @@ namespace myengine
 {
 
 	class Entity;
+	class Camera;
 
 	class Core
 	{
@@ -17,6 +18,9 @@ namespace myengine
 		void run();
 		void pause();
 
+		void setCamera(std::shared_ptr<Camera> cam) { currCamera = cam; }
+		std::shared_ptr<Camera> getCamera() { return currCamera; }
+
 		std::shared_ptr<Entity> addEntity();
 
 	private:
@@ -26,6 +30,8 @@ namespace myengine
 		bool running;
 		std::vector<std::shared_ptr<Entity> > entities;
 		std::weak_ptr<Core> self;
+
+		std::shared_ptr<Camera> currCamera;
 
 		SDL_Window *window;
 	};
