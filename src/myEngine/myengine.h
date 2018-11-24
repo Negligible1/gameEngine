@@ -12,6 +12,5 @@
 #include "Mesh.h"
 #include "Material.h"
 #include "Collision.h"
-#include "Shader.h"
 
 #endif

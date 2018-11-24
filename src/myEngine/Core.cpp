@@ -72,15 +72,8 @@ namespace myengine
 
 	void Core::run()
 	{
-		//If it hasn't been done already we'll initialise our keyboard and enviroment class here
-		if (!keyboard)
-		{
-			keyboard = std::make_shared<Keyboard>();
-		}
-		if (!enviroment)
-		{
-			enviroment = std::make_shared<Enviroment>();
-		}
+		//Checks that all functionality has been initialised
+		AdditionalInits();
 
 		//set running bool to true
 		running = true;
@@ -130,7 +123,7 @@ namespace myengine
 		running = false;
 	}
 
-	std::shared_ptr<Entity> Core::addEntity()
+	void Core::AdditionalInits()
 	{
 		//If it hasn't been done already we'll initialise our keyboard and enviroment class here
 		if (!keyboard)
@@ -141,6 +134,16 @@ namespace myengine
 		{
 			enviroment = std::make_shared<Enviroment>();
 		}
+		if (!collision)
+		{
+			collision = std::make_shared<Collision>();
+		}
+	}
+
+	std::shared_ptr<Entity> Core::addEntity()
+	{
+		//Checks that all functionality has been initialised
+		AdditionalInits();
 
 		std::shared_ptr<Entity> toEntity = std::make_shared<Entity>();
 		entities.push_back(toEntity);

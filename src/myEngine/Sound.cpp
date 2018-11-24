@@ -8,7 +8,6 @@
 
 namespace myengine
 {
-
 	struct SoundImpl
 	{
 		ALuint id;
@@ -81,7 +80,6 @@ namespace myengine
 	{
 
 	}
-
 	Sound::Sound(std::string path)
 	{
 		load(path);
@@ -89,6 +87,7 @@ namespace myengine
 
 	void Sound::load(std::string path)
 	{
+		//Loads sound using the soundimpl struct
 		impl = std::make_shared<SoundImpl>();
 
 		ALenum format = 0;
@@ -104,14 +103,13 @@ namespace myengine
 
 	void Sound::play()
 	{
+		//Play loaded sound
 		ALuint sid = 0;
 		alGenSources(1, &sid);
 		alListener3f(AL_POSITION, 0.0f, 0.0f, 0.0f);
 		alSource3f(sid, AL_POSITION, 0.0f, 0.0f, 0.0f);
 		alSourcei(sid, AL_BUFFER, impl->id);
 		alSourcePlay(sid);
-
-		//audioSources.push_back(sid);
 	}
 
 	void Sound::play(float vol, float varMin, float varMax)
@@ -120,7 +118,8 @@ namespace myengine
 		varMin *= 1000.0f;
 		varMax *= 1000.0f;
 		float variance = (std::rand() % ((int)varMin + 1 - (int)varMax) + (int)varMin) / 1000.0f;
-		//return std::rand() % (max + 1 - min) + min;
+
+		//Play loaded sound
 		ALuint sid = 0;
 		alGenSources(1, &sid);
 		alListener3f(AL_POSITION, 0.0f, 0.0f, 0.0f);
@@ -129,8 +128,6 @@ namespace myengine
 		alSourcef(sid, AL_PITCH, variance);
 		alSourcef(sid, AL_GAIN, vol);
 		alSourcePlay(sid);
-
-		//audioSources.push_back(sid);
 	}
 
 }

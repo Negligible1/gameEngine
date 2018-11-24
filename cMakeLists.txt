@@ -51,8 +51,6 @@ add_library(myengine
   src/myengine/Camera.cpp
   src/myengine/Sound.cpp
   src/myengine/Collision.cpp
-  src/myengine/Shader.cpp
-  src/myengine/Resource.cpp
 )
 
 if(MSVC)

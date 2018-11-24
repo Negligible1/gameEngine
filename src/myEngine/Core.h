@@ -7,6 +7,7 @@
 
 #include "Keyboard.h"
 #include "Enviroment.h"
+#include "Collision.h"
 #include "Camera.h"
 
 namespace myengine
@@ -27,12 +28,14 @@ namespace myengine
 		std::shared_ptr<Camera> getCamera() { return currCamera; }
 		std::shared_ptr<Keyboard> getKeyboard() { return keyboard; }
 		std::shared_ptr<Enviroment> getEnviroment() { return enviroment; }
+		std::shared_ptr<Collision> getCollision() { return collision; }
 
 		std::shared_ptr<Entity> addEntity();
 
 	private:
 		void CoreDraw();
 		void CoreUpdate();
+		void AdditionalInits();
 
 		bool running;
 		std::vector<std::shared_ptr<Entity> > entities;
@@ -41,6 +44,7 @@ namespace myengine
 		std::shared_ptr<Camera> currCamera;
 		std::shared_ptr<Keyboard> keyboard;
 		std::shared_ptr<Enviroment> enviroment;
+		std::shared_ptr<Collision> collision;
 
 		SDL_Window *window;
 		ALCdevice* device;

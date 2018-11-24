@@ -24,6 +24,8 @@ namespace myengine
 
 		_position = glm::vec3(0.0f, 0.0f, 0.0f);
 		_scale = glm::vec3(1.0f, 1.0f, 1.0f);
+
+		draw = true;
 	}
 
 	void MeshRenderer::Initialise()
@@ -33,6 +35,8 @@ namespace myengine
 
 		_position = glm::vec3(0.0f, 0.0f, 0.0f);
 		_scale = glm::vec3(1.0f, 1.0f, 1.0f);
+
+		draw = true;
 	}
 
 	void MeshRenderer::Start()
@@ -42,6 +46,13 @@ namespace myengine
 
 	void MeshRenderer::Update()
 	{
+
+		_rotation.y += (getCore()->getEnviroment()->getDeltaTimeS()) * 0.5f;
+		while (_rotation.y > (3.14159265358979323846 * 2.0))
+		{
+			_rotation.y -= (float)(3.14159265358979323846 * 2.0);
+		}
+
 		_modelMatrix = glm::rotate(_modelMatrix, _rotation.y, glm::vec3(0, 1, 0));
 		_invModelMatrix = glm::rotate(glm::mat4(1.0f), -_rotation.y, glm::vec3(0, 1, 0));
 		_modelMatrix = glm::translate(glm::mat4(1.0f), _position);
@@ -50,23 +61,26 @@ namespace myengine
 
 	void MeshRenderer::Draw()
 	{
-		glm::mat4 pMat = getCore()->getCamera()->getProjMtrx();
-		glm::mat4 vMat = getCore()->getCamera()->getViewMatrx();
-
-		if (_mesh != NULL)
+		if (draw)
 		{
-			if (_texture != NULL)
+			glm::mat4 pMat = getCore()->getCamera()->getProjMtrx();
+			glm::mat4 vMat = getCore()->getCamera()->getViewMatrx();
+
+			if (_mesh != NULL)
 			{
-				// Give all the matrices to the material
-				// This makes sure they are sent to the shader
-				_texture->SetMatrices(_modelMatrix, _invModelMatrix, vMat, pMat);
-				// This activates the shader
-				_texture->Apply();
+				if (_texture != NULL)
+				{
+					// Give all the matrices to the material
+					// This makes sure they are sent to the shader
+					_texture->SetMatrices(_modelMatrix, _invModelMatrix, vMat, pMat);
+					// This activates the shader
+					_texture->Apply();
+				}
+
+				// Sends the mesh data down the pipeline
+				_mesh->Draw();
+
 			}
-
-			// Sends the mesh data down the pipeline
-			_mesh->Draw();
-
 		}
 	}
 
