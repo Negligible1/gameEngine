@@ -11,19 +11,25 @@
 
 namespace myengine
 {
-	void MeshRenderer::Initialise(std::string _meshPath, std::string _texturePath)
+	void MeshRenderer::Initialise(std::string _meshPath, std::string _texturePath, std::string _vertShaderPath, std::string _fragShaderPath)
 	{
 		_texture = std::make_shared<Material>();
-
-		_texture->LoadShaders("../Assets/Shaders/VertShader.txt", "../Assets/Shaders/FragShader.txt");
+		_texture->LoadShaders(_vertShaderPath, _fragShaderPath);
 		_texture->SetDiffuseColour(glm::vec3(0.5, 0.5, 0.5));
-		_texture->SetTexture("../Assets/Textures/Blue.bmp");
+		_texture->SetTexture(_texturePath);
 		_texture->SetLightPosition(glm::vec3(10, 10, 0));
 
-
 		_mesh = std::make_shared<Mesh>();
-		_mesh->LoadOBJ("../Assets/Models/Box.obj");
+		_mesh->LoadOBJ(_meshPath);
 
+		_position = glm::vec3(0.0f, 0.0f, 0.0f);
+		_scale = glm::vec3(1.0f, 1.0f, 1.0f);
+	}
+
+	void MeshRenderer::Initialise()
+	{
+		_mesh = std::make_shared<Mesh>();
+		_texture = std::make_shared<Material>();
 
 		_position = glm::vec3(0.0f, 0.0f, 0.0f);
 		_scale = glm::vec3(1.0f, 1.0f, 1.0f);
@@ -62,5 +68,23 @@ namespace myengine
 			_mesh->Draw();
 
 		}
+	}
+
+
+	void MeshRenderer::SetModel(std::string path)
+	{
+		_mesh->LoadOBJ(path);
+	}
+
+	void MeshRenderer::SetMaterial(std::string path)
+	{
+		_texture->SetTexture(path);
+		_texture->SetLightPosition(glm::vec3(10, 10, 0));
+		_texture->SetDiffuseColour(glm::vec3(0.5, 0.5, 0.5));
+	}
+
+	void MeshRenderer::SetShaders(std::string vertPath, std::string fragPath)
+	{
+		_texture->LoadShaders(vertPath, fragPath);
 	}
 }

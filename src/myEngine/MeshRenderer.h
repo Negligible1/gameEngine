@@ -10,10 +10,15 @@ namespace myengine
 	{
 	public:
 		//Default Component functions
-		void Initialise(std::string _meshPath, std::string _texturePath);
+		void Initialise(std::string _meshPath, std::string _texturePath, std::string _vertShaderPath, std::string _fragShaderPath);
+		void Initialise();
 		void Start();
 		void Update();
 		void Draw();
+
+		void SetModel(std::string path);
+		void SetMaterial(std::string path);
+		void SetShaders(std::string vertPath, std::string fragPath);
 
 		//Sets and Adjusts
 		void SetPosition(float posX, float posY, float posZ) { _position.x = posX; _position.y = posY; _position.z = posZ; }

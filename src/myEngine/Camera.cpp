@@ -24,7 +24,6 @@ namespace myengine
 
 	void Camera::Update()
 	{
-
 		viewMatrix = glm::translate(glm::mat4(1.0f), position);
 		viewMatrix = glm::rotate(viewMatrix, camAngleX, glm::vec3(1, 0, 0));
 		viewMatrix = glm::rotate(viewMatrix, camAngleY, glm::vec3(0, 1, 0));

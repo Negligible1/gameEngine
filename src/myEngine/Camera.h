@@ -5,6 +5,9 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <GLM/gtc/quaternion.hpp>
 
+#ifndef MYENGINE_CAMERA_H
+#define MYENGINE_CAMERA_H
+
 namespace myengine
 {
 	class Camera : public Component
@@ -19,10 +22,13 @@ namespace myengine
 		glm::mat4 getProjMtrx() { return projectionMatrix; }
 		glm::mat4 getViewMatrx() { return viewMatrix; }
 		
-		void cameraSetPosition(glm::vec3 pos) { viewMatrix = glm::translate(glm::mat4(1.0f), pos); }
+		void cameraSetPosition(glm::vec3 pos) { position = pos; }
+		void cameraSetPosition(float x, float y, float z) { position.x = x; position.y = y; position.z = z; }
+		void cameraAdjustPosition(float x, float y, float z) { position.x += x; position.y += y; position.z += z; }
+		void cameraAdjustPosition(glm::vec3 adjustment) { position += adjustment; }
 		
-		void cameraSetRotation(float x, float y) { viewMatrix = glm::rotate(viewMatrix, x, glm::vec3(1, 0, 0));
-		viewMatrix = glm::rotate(viewMatrix, y, glm::vec3(0, 1, 0)); }
+		void cameraSetRotation(float x, float y) { camAngleX = x; camAngleY = y; }
+
 		
 		
 
@@ -39,3 +45,5 @@ namespace myengine
 		float camAngleY;
 	};
 }
+
+#endif // !MYENGINE_CAMERA_H

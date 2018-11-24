@@ -8,5 +8,10 @@
 #include "MeshRenderer.h"
 #include "Keyboard.h"
 #include "Camera.h"
+#include "Sound.h"
+#include "Mesh.h"
+#include "Material.h"
+#include "Collision.h"
+#include "Shader.h"
 
 #endif
