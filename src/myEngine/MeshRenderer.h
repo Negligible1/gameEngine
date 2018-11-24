@@ -20,6 +20,9 @@ namespace myengine
 		void SetMaterial(std::string path);
 		void SetShaders(std::string vertPath, std::string fragPath);
 
+		void SetModel(std::shared_ptr<Mesh> mod) { _mesh = mod; }
+		void SetMaterial(std::shared_ptr<Material> matt) { _texture = matt; }
+
 		//Sets and Adjusts
 		void SetPosition(float posX, float posY, float posZ) { _position.x = posX; _position.y = posY; _position.z = posZ; }
 		void SetPosition(glm::vec3 value) { _position = value; }
@@ -34,6 +37,9 @@ namespace myengine
 		glm::vec3 GetPosition() { return _position; }
 		glm::vec3 GetRotation() { return _rotation; }
 		glm::vec3 GetScale() { return _scale; }
+
+		glm::vec3 GetBoundingBoxMax() { return (_mesh->GetBoundingBoxMax() * _scale); }
+		glm::vec3 GetBoundingBoxMin() { return (_mesh->GetBoundingBoxMin() * _scale); }
 
 		std::shared_ptr<Mesh> getMesh() { return _mesh; }
 		std::shared_ptr<Material> getMaterial() { return _texture; }

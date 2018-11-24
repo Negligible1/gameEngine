@@ -10,7 +10,8 @@ namespace myengine
 	class Collision
 	{
 	public:
-		bool Collided(glm::vec3 Ob1Pos, glm::vec3 Ob1Max, glm::vec3 Ob1Min, glm::vec3 Ob2Pos, glm::vec3 Ob2Max, glm::vec3 Ob2Min);
+		bool CollidedXYZ(glm::vec3 Ob1Pos, glm::vec3 Ob1Max, glm::vec3 Ob1Min, glm::vec3 Ob2Pos, glm::vec3 Ob2Max, glm::vec3 Ob2Min);
+		bool CollidedXY(glm::vec3 Ob1Pos, glm::vec3 Ob1Max, glm::vec3 Ob1Min, glm::vec3 Ob2Pos, glm::vec3 Ob2Max, glm::vec3 Ob2Min);
 	private:
 		bool CheckIntersect(float a , float b, float c, float d);
 	};
